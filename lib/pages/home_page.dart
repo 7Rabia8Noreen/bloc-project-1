@@ -2,6 +2,7 @@ import 'package:bloc_project_1/bloc/fetch_result.dart';
 import 'package:bloc_project_1/bloc/load_action.dart';
 import 'package:bloc_project_1/bloc/person_bloc.dart';
 import 'package:bloc_project_1/model/person.dart';
+import 'package:bloc_project_1/uttils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -21,11 +22,13 @@ class HomePage extends StatelessWidget {
            Row(
             children: [
               TextButton(onPressed: (){
-                context.read<PersonBloc>().add(LoadPersonAction(url: PersonUrl.person1));
+                context.read<PersonBloc>().add(LoadPersonAction(url: person1Url,
+                loader: getPersons
+                ));
               },
                child: Text('Load Person #1')),
               TextButton(onPressed: (){
-                 context.read<PersonBloc>().add(LoadPersonAction(url: PersonUrl.person2));
+                 context.read<PersonBloc>().add(LoadPersonAction(url: person2Url, loader: getPersons));
               },
                child: Text('Load Person #2'))
             ],

@@ -26,23 +26,24 @@ class Person{
  .then((list) => list.map((e) => Person.fromJson(e)));
 
 
- enum PersonUrl{
-  person1,
-  person2
-}
+//  enum PersonUrl{
+//   person1,
+//   person2
+// }
 
-extension UrlString on PersonUrl{
-  String get urlString{
-    switch(this){
+// extension UrlString on PersonUrl{
+//   String get urlString{
+//     switch(this){
       
-      case PersonUrl.person1:
-        return 'http://192.168.1.101:5500/api/person1.json';
-      case PersonUrl.person2:
-       return 'http://192.168.1.101:5500/api/person2.json';
-    }
-  }
-}
+//       case PersonUrl.person1:
+//         return 'http://192.168.1.101:5500/api/person1.json';
+//       case PersonUrl.person2:
+//        return 'http://192.168.1.101:5500/api/person2.json';
+//     }
+//   }
+// }
 
 extension Subscript<T> on Iterable<T>{
   T? operator [](int index) => length> index ? elementAt(index): null;
 }
+    

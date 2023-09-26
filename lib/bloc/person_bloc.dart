@@ -4,7 +4,7 @@ import 'package:bloc_project_1/model/person.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class PersonBloc extends Bloc<LoadAction, FetchResult?>{
-  final Map<PersonUrl, Iterable<Person> > _cache={};
+  final Map<String, Iterable<Person> > _cache={};
   PersonBloc(): super(null){
     on<LoadPersonAction>((event, emit)async {
       final url= event.url;
@@ -14,7 +14,8 @@ class PersonBloc extends Bloc<LoadAction, FetchResult?>{
         emit(result);
       }
       else{
-         final persons=  await getPersons(url.urlString);
+        final loader= event.loader;
+         final persons=  await loader(url);
          _cache[url]= persons;
          final result= FetchResult(persons: persons, isRetrievedFromCache: false);
          emit(result);
